@@ -1,4 +1,4 @@
-# Day 1 - 1 November 2026
+# Day 1 - 29th October 2026(started early)
 
 ## Hours spent
 About 1.5 hours.
