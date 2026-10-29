@@ -23,3 +23,10 @@ About 1.5 hours.
 - I am not sure how `ssh-keygen -t ed25519 -C "chethan.shankar.ks@gmail.com"` generated the key, or whether a key already existed before I ran it.
 - I do not know how to read the permissions shown by `ls -la`, such as `drwxr-xr-x`.
 
+## Résumé and LinkedIn
+- I wrote my résumé from scratch. I learned that every line must be something I can explain with an example in an interview, so I replaced weak wording like "efficiently monitoring" and "followed runbooks" with plain facts about what I did.
+- I moved Skills and Certifications above the older sections, because recruiters scan the top of the page first and keywords like Linux and AWS should be there.
+- I updated my LinkedIn headline, About section, Experience entry and skills so they match the résumé. I will only add Python, Docker and Terraform as skills after I have built a working project with each.
+- I turned on Open to Work for "Recruiters only", so there is no public banner. LinkedIn says it cannot guarantee complete privacy from my current company, so I am aware of that small risk.
+- I kept internal tool names, the client name and server details out of my résumé and my public repos.
+
