@@ -52,3 +52,21 @@ An error line is not automatically the cause. In my own output, `journalctl -p e
 - journalctl -p err -n 10 --no-pager
 - journalctl -u cron --since "06:30" --until "06:40" --no-pager
 - journalctl -u cron -f (follow live, Ctrl+C to stop)
+
+## Part 4: users and sudo (3 November 2026)
+
+### What did id and getent passwd show me?
+`id` showed my user ID (uid 1000), my main group and the other groups I belong to. Two matter for support work: `sudo` lets me run commands as root, and `adm` lets me read the log files in /var/log. `getent passwd chethan` showed the account record: username, UID, GID, home folder (/home/chethan) and login shell (/bin/bash). The `x` in the password field means the password hash is kept in /etc/shadow.
+
+### Why could I not read /etc/shadow?
+/etc/passwd is -rw-r--r--, so everyone can read it. /etc/shadow is -rw-r-----, owned by root with group shadow, so others get no access. I am not root and not in the shadow group, so `cat /etc/shadow` gave Permission denied. It holds password hashes, so it is protected.
+
+### What does sudo do?
+`sudo whoami` printed root. sudo runs one command as root, and it works because I am in the sudo group.
+
+### Commands I used
+- whoami, id, who
+- getent passwd chethan
+- ls -l /etc/passwd /etc/shadow
+- cat /etc/shadow (permission denied)
+- sudo whoami
