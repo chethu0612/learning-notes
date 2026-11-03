@@ -19,3 +19,19 @@ The `&` runs the command in the background, so I can keep using the terminal whi
 
 ## One thing I want to remember
 A plain `kill` asks a process to stop politely. `kill -9` forces it and should be the last resort.
+
+## Part 2: systemd (3 November 2026)
+
+### What is systemd and what does systemctl status show?
+systemd is the service manager on Linux. It runs as PID 1 (/sbin/init) and starts, stops and restarts all the other services. `systemctl status` shows the state of the whole machine (running, number of failed units) and the tree of services under it. `systemctl status <service>` shows one service: whether it is running, its main PID, memory, CPU and its recent log lines.
+
+### What changed after restarting cron, and what stayed the same?
+After `sudo systemctl restart cron`, the main PID changed (176 to 708), the "active since" time reset, and memory and CPU were reset (1.1M to 492K, 26ms to 2ms). The service name, the command it runs, enabled, and active (running) stayed the same, so the service came straight back up.
+
+### Enabled vs active (with my own cron stop/start example)
+Enabled means the service starts automatically at boot. Active means it is running right now. I stopped cron with `sudo systemctl stop cron` and it showed inactive (dead) but still enabled. After `sudo systemctl start cron` it was active (running) again with a new PID (853).
+
+### Commands I used
+- systemctl status
+- systemctl list-units --type=service --state=running
+- sudo systemctl restart / stop / start cron
