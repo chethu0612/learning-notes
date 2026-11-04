@@ -38,4 +38,4 @@ DNS turns a name (github.com) into an IP address (20.207.73.82). People use name
 - Check when resolvectl shows "Data from: cache" (the resolver cache).
 
 ## Picture
-dns-lookup-map.png (Gemini infographic of the 5 steps, saved in Downloads)
+![DNS lookup map](images/dns-lookup-map.png)
