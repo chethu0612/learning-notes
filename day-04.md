@@ -65,3 +65,10 @@ DNS turns a name (github.com) into an IP address (20.207.73.82). People use name
 
 ## Test next
 - Find out who owns UDP 323.
+
+## Cache test with google.com (4 Nov 2026)
+    resolvectl query google.com   -> 27.7 ms, Data from: network
+    resolvectl query google.com   -> 970 us, Data from: cache
+- The second lookup was almost 30 times faster and the tool said it came from the cache. This is the real cache hit I was looking for.
+- getent hosts showed only the IPv6 address first (2404:6800:4007:805::200e). resolvectl showed both IPv4 (142.251.222.206) and IPv6.
+- Rule: do not guess cache vs network. Read the "Data from:" line.
