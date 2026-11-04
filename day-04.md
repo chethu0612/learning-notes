@@ -39,3 +39,29 @@ DNS turns a name (github.com) into an IP address (20.207.73.82). People use name
 
 ## Picture
 ![DNS lookup map](images/dns-lookup-map.png)
+
+## Ports (4 Nov 2026)
+- IP address = address of the building. Port = door number inside it, so traffic reaches the right program.
+- Port: a number (0 to 65535) that identifies which program should receive the traffic.
+- Listening: a program is waiting at its port for connections.
+- Socket: IP address + port, for example 20.207.73.82:443.
+- Common ports: 22 SSH, 53 DNS, 80 HTTP, 443 HTTPS.
+
+## TCP and UDP
+- TCP: like a phone call. Sets up a connection first, checks every piece arrived in order, resends lost pieces. Slower but reliable. Used for web (HTTP/HTTPS), SSH, GitHub, email, downloads.
+- UDP: like posting a letter. No connection, no checking, no resend. Faster and lighter. Used for small DNS questions, video calls, streaming, games, time sync.
+- DNS shows up under both: small questions use UDP, larger answers use TCP.
+
+## What I ran: ss -tulnp
+    ss -tuln     -> t = TCP, u = UDP, l = listening, n = numbers not names
+    sudo ss -tulnp  -> adds the Process column (program that owns the port)
+- Port 53 appears on both UDP and TCP.
+- 127.0.0.53:53 and 127.0.0.54:53 are owned by systemd-resolve (pid 166). This is my resolver.
+- 10.255.255.254:53 is the WSL nameserver (from /etc/resolv.conf). No process shown: it is provided by WSL, not by a program inside my Ubuntu.
+- UDP 323 on 127.0.0.1 and [::1]: no process shown, owner not confirmed.
+- 127.x.x.x (loopback) is reachable only from this machine. 0.0.0.0 would mean reachable from anywhere. Nothing of mine was open to the internet.
+- A blank Process column means the owner is not visible from inside this Ubuntu, not that nobody owns the port.
+- Port 22 not listening: I use SSH to connect out to GitHub, I do not run an SSH server.
+
+## Test next
+- Find out who owns UDP 323.
